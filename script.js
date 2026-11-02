@@ -135,6 +135,8 @@ function pointerDown(event) {
 }
 
 function pointerMove(event) {
+  if (loop_is_playing && measure_index != -1){
+
   pos_x = event.clientX
   pos_y = event.clientY
 
@@ -147,12 +149,9 @@ function pointerMove(event) {
   lastX = normX;
   lastY = normY;
   lastTime = now;
-
-  if (loop_is_playing && measure_index != -1){
   play_random_note(speed, event)
-  }
-
   square_size_minus(1, 20)
+  }
 
 }
 
