@@ -148,7 +148,7 @@ function pointerMove(event) {
   lastY = normY;
   lastTime = now;
 
-  if (loop_is_playing){
+  if (loop_is_playing && measure_index != -1){
   play_random_note(speed, event)
   }
 
