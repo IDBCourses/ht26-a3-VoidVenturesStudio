@@ -91,7 +91,7 @@ let playability = true
 let previous_note = "A4"
 let loop_is_playing = false
 
-let measure_index = 0;
+let measure_index = -1;
 
 let intro_started = false
 
