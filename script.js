@@ -89,10 +89,11 @@ let lastTime = 0;
 let speeds = []
 let playability = true
 let previous_note = "A4"
+let loop_is_playing = false
 
 let measure_index = -1;
 
-let loop_started = false
+let intro_started = false
 
 let square_size = 10
 
@@ -120,11 +121,12 @@ function use() {
 function pointerDown(event) {
   Tone.start(); // browsers only allow sound after the player has pressed something
 
-  if (!loop_started){
+  if (!intro_started){
     measure_iterator()
     loop.triggerAttackRelease("A1", 6)
-    loop_started = true
+    intro_started = true
     setTimeout(function (){
+      loop_is_playing = true
       play_loop()
       loop.triggerAttackRelease("A2", 12)
       loop.triggerAttackRelease("A3", 12)
@@ -146,7 +148,9 @@ function pointerMove(event) {
   lastY = normY;
   lastTime = now;
 
+  if (loop_is_playing){
   play_random_note(speed, event)
+  }
 
   square_size_minus(1, 20)
 
@@ -255,7 +259,6 @@ function measure_iterator(){
     if (measure_index === 4){
       measure_index = 0
     }
-    console.log(measure_index)
     measure_iterator()
   },3000)
 }
